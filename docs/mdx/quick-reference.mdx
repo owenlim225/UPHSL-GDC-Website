@@ -1,59 +1,33 @@
-# Quick Reference
+# Quick Reference Cheat Sheet
 
-Daily cheat sheet for project planning and execution.
+Daily reference commands and scripts for the UPHSL GDC platform developers.
 
-## Planning Sections Quick Links
+## Local Server Commands
 
-| Section | File | Purpose |
-|---------|------|---------|
-| 0 | [Master Index](/planning/0-Master-Index) | Navigation guide |
-| 1 | [Executive Summary](/planning/1-Executive-Summary) | Vision and problem |
-| 2 | [Objectives & Metrics](/planning/2-Objectives-Success-Metrics) | Goals and KPIs |
-| 3 | [Scope Definition](/planning/3-Scope-Definition) | What's in/out |
-| 4 | [Architecture Design](/planning/4-System-Architecture-Design) | Technical design |
-| 5 | [Technical Workflow](/planning/5-Technical-Execution-Workflow) | Implementation |
-| 6 | [Timeline](/planning/6-Project-Phases-Timeline) | Phases and milestones |
-| 7 | [Resources](/planning/7-Resource-Planning) | Team and budget |
-| 8 | [Risks](/planning/8-Risk-Management) | Risk register |
-| 9 | [Execution](/planning/9-Execution-Strategy) | Daily workflow |
-| 10 | [Monitoring](/planning/10-Monitoring-Reporting) | Metrics tracking |
-| 11 | [ROI](/planning/11-ROI-Value-Realization) | Financial analysis |
-| 12 | [Governance](/planning/12-Governance-Decision-Making) | Decision framework |
-| 13 | [Lessons Learned](/planning/13-Lessons-Learned-Continuous-Improvement) | Learning process |
+- `npm run dev` - Spins up the Next.js development server locally.
+- `npm run build` - Validates type-checks and executes a production build compile.
+- `npm run lint` - Runs ESLint against strict rulesets over `src/`.
 
-## Claude Skills Quick Reference
+## Supabase CLI Essentials
 
-| Skill | Trigger | Purpose |
-|-------|---------|---------|
-| tech-stack-selector | "What tech stack?" | Technology selection |
-| architecture-decisions | "Create ADR" | Document decisions |
-| code-standards-enforcer | "Code review" | Quality enforcement |
-| ci-cd-pipeline-builder | "Setup CI/CD" | Pipeline automation |
-| agile-executor | "Plan sprint" | Sprint management |
-| project-risk-identifier | "Identify risks" | Risk management |
-| automation-orchestrator | "Run scripts" | Script management |
+Ensure you have the Supabase CLI installed if creating new migrations.
+- `supabase init` - Re-initialize local configs (rarely needed).
+- `supabase start` - Boots up a local, isolated Docker representation of Supabase to test destructive schema changes without touching the live Production database.
+- `supabase migration new add_events_table` - Drafts a new SQL file you can populate with raw DDL before syncing it upward.
+- `supabase gen types typescript --project-id XYZ > types/supabase.ts` - Refreshes TypeScript types matching current PostgreSQL schema parameters!
 
-## Common Commands
+## Environment Flags
 
-### Planning
-- Start with Section 1 (Executive Summary)
-- Complete Sections 1-4 in Week 1
-- Review Master Index for connections
+- `.env.local`: Add development keys. **NEVER** commit this file.
+- `.env.example`: Safe representations of existing key mapping arrays.
 
-### Execution
-- Use Claude Skills for decisions
-- Follow Technical Execution Workflow
-- Track metrics in Section 10
+## Design Tokens & Styling
 
-### Documentation
-- Create ADRs for major decisions
-- Update sections weekly
-- Document lessons learned
+- **`design-system.json`**: Primary source of truth for branding.
+- **Note:** Modifying JSON tokens may require a **restart** of the `npm run dev` server for changes to re-inject into the Tailwind CSS variable layer.
 
-## File Locations
-
-- Planning sections: `planning/`
-- Reference guides: `docs/reference/`
-- Claude skills: `.claude/skills/`
-- Configuration: Root directory
-
+## Git Workflow
+- Create branches off `main` -> `feature/event-calendar`. 
+- Commit with conventional tags -> `feat: adds public calendar route`.
+- Open a PR to `main` to trigger Vercel Preview Deployments.
+- Review [ADR-001: Initial Tech Stack](../adr/adr-001-initial-tech-stack.md) for architectural rationale.

@@ -60,11 +60,13 @@ docs/operations/
 ├── monitoring/
 │   ├── metrics.md
 │   ├── alerts.md
-│   └── dashboards.md
+│   ├── dashboards.md
+│   └── ...
 └── procedures/
     ├── deployment.md
     ├── rollback.md
-    └── scaling.md
+    ├── scaling.md
+    └── ...
 ```
 
 ## Runbook Template
@@ -166,11 +168,11 @@ docs/operations/
 
 ## Root Cause
 
-[Description of root cause]
+- [Description of root cause]
 
 ## Resolution
 
-[How the incident was resolved]
+- [How the incident was resolved]
 
 ## Prevention
 
@@ -179,7 +181,7 @@ docs/operations/
 
 ## Lessons Learned
 
-[What we learned and will do differently]
+- [What we learned and will do differently]
 ```
 
 ## Quick Start
@@ -199,4 +201,3 @@ docs/operations/
 
 **Status:** Ready for operations documentation  
 **Last Updated:** [Date]
-

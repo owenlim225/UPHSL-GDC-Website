@@ -1,80 +1,8 @@
-# Claude Skills
+# External AI Tools Protocol
 
-AI-powered skills for automated project management assistance.
+The UPHSL GDC engineering team leverages various AI protocols (like GitHub Copilot or Claude Code skills) inside repository automation workflows.
 
-## Overview
-
-Claude Skills are auto-activated AI assistants that help with key project decisions and tasks.
-
-## Available Skills
-
-### 1. tech-stack-selector
-Choose technologies based on project requirements.
-
-**Triggers:** "What tech stack should we use?", "Help me choose a database"
-
-**Location:** `.claude/skills/tech-stack-selector/`
-
-### 2. architecture-decisions
-Document Architecture Decision Records (ADRs).
-
-**Triggers:** "Create an ADR", "Document this architecture decision"
-
-**Location:** `.claude/skills/architecture-decisions/`
-
-### 3. code-standards-enforcer
-Enforce code quality and standards.
-
-**Triggers:** "Code review", "Check code quality", "Review this PR"
-
-**Location:** `.claude/skills/code-standards-enforcer/`
-
-### 4. ci-cd-pipeline-builder
-Automate CI/CD pipeline setup.
-
-**Triggers:** "Setup CI/CD", "Create GitHub Actions workflow"
-
-**Location:** `.claude/skills/ci-cd-pipeline-builder/`
-
-### 5. agile-executor
-Run sprints and manage agile ceremonies.
-
-**Triggers:** "Plan sprint", "Run retrospective", "Create sprint backlog"
-
-**Location:** `.claude/skills/agile-executor/`
-
-### 6. project-risk-identifier
-Identify and manage project risks.
-
-**Triggers:** "Identify risks", "Risk assessment", "What could go wrong?"
-
-**Location:** `.claude/skills/project-risk-identifier/`
-
-### 7. automation-orchestrator
-Manage setup, validation, and deployment scripts.
-
-**Triggers:** "Set up automation", "Run validation scripts"
-
-**Location:** `.claude/skills/automation-orchestrator/`
-
-## How to Use
-
-Simply ask Claude in your repository context:
-
-- "What tech stack should we use for a SaaS product?"
-- "Create an ADR for choosing PostgreSQL"
-- "Review this code for quality issues"
-- "Set up CI/CD for this project"
-
-Claude will automatically use the appropriate skill.
-
-## Examples
-
-See [Skills Examples](/docs/skills-examples) for detailed conversation examples.
-
-## Setup
-
-Skills are automatically available when you have the `.claude/skills/` directory in your repository.
-
-No additional setup required.
-
+## Using AI the right way
+1. **Component Generation:** You are highly encouraged to use LLMs to scaffold out tedious React standard boilerplates or repetitive Tailwind class combinations.
+2. **Schema Logic Check:** Never allow an AI parameter map to fully dictate Supabase Database Table Migrations blindly. Always manually trace relationships (Foreign Keys & Cascade deletes) yourself to prevent irreversible table drop schemas.
+3. **Internal Tools (.claude/skills/):** We maintain prompt-shells matching ADR generations automatically. If you construct an ADR using local scripts, double-check that the AI didn't hallucinate non-existent Vercel environments or random databases. Ensure outputs align with `docs/reference/SYSTEM-ARCHITECTURE.md`.

@@ -1,90 +1,45 @@
 # FAQ
 
-Frequently asked questions about the Project Planning Starter Pack.
+Frequently asked questions regarding the UPHSL Game Developers' Club (GDC) platform and its underlying architecture.
 
-## General Questions
+## General Organization
 
-### What is this starter pack?
+### What is the purpose of this platform?
 
-A complete framework for planning, executing, and delivering technical projects. It includes 12 planning sections, technical execution guides, and AI-powered Claude skills.
+The platform serves dual purposes:
+1. **Public Face:** A public portfolio to showcase the club, browse past game events, and view featured student games.
+2. **Internal Portal:** A dedicated Dashboard where members can submit their semester projects or game jam titles directly to Officers for review and publishing.
 
-### Who is this for?
+### Who is this documentation for?
 
-- Project managers planning technical projects
-- Engineering teams building software
-- Solo developers starting new projects
-- Teams adopting structured planning
+This repository documentation is written strictly for the **Engineering Team** maintaining the platform. For general student help (such as "How do I upload a massive 2GB Unity build?"), refer to the in-app Member Dashboard guidelines.
 
-### How long does setup take?
+## Development & Features
 
-- **Quick start:** 5 minutes (read START-HERE.md)
-- **Full planning:** 1-2 weeks (complete all sections)
-- **Implementation:** Ongoing (update as project evolves)
+### Where do uploaded games go?
 
-## Planning Sections
+When a standard member hits "Submit Project", the metadata goes to the `games` table in PostgreSQL. The actual images and/or executable `.zip` artifacts are streamed via Next.js directly into **Supabase Object Storage**, heavily locked behind Row-Level Security.
 
-### Do I need to complete all 12 sections?
+### Do I need a special account to work on this code?
 
-Start with Sections 1-4 (Executive Summary, Objectives, Scope, Architecture). Complete others as needed for your project.
+Yes. To effectively work on backend database features, you must be invited to the club's "Supabase Organization" by the President. For frontend rendering UI changes, you can simply run against the staging keys without full database modification rights.
 
-### Can I skip sections?
+### How are Officers notified of new submissions?
 
-Yes. Focus on sections relevant to your project. The Master Index shows which sections are required vs. optional.
+We have implemented a Postgres-triggered webhook. Any time a new record is generated with a `status` of `pending`, a payload is instantly fired to the **Officer-only Discord Channel** notifying leadership to jump into the dashboard and review.
 
-### How often should I update planning documents?
+## Technical Maintenance
 
-- **Weekly:** Update progress and metrics
-- **After major decisions:** Update relevant sections
-- **Monthly:** Comprehensive review
+### What tech stack are we using?
 
-## Claude Skills
+- **Frontend:** Next.js (App Router), React, Tailwind CSS
+- **Backend:** Supabase (Auth, Postgres DB, Storage)
+- **Deployment:** Vercel (Edge network)
 
-### How do Claude skills work?
+### Can I skip using Tailwind?
 
-Skills are auto-activated when you ask relevant questions in your repository. No manual setup required.
-
-### Do I need to install anything?
-
-No. Skills are in `.claude/skills/` directory and work automatically in Claude Code.
-
-### Can I create custom skills?
-
-Yes. Follow the same structure as existing skills in `.claude/skills/`.
-
-## Technical Questions
-
-### What tech stack does this support?
-
-Any tech stack. The framework is technology-agnostic and works with:
-- TypeScript/JavaScript
-- Python
-- Java/Kotlin
-- Go/Rust
-- Any other language
-
-### Do I need Next.js for MDX docs?
-
-MDX docs are optional. You can use the planning sections as markdown files without MDX setup.
-
-### How do I deploy the MDX documentation?
-
-The MDX docs work with Next.js. Deploy to Vercel, Netlify, or any Next.js-compatible platform.
+No. The user interface leverages strict adherence to `design-system.json` utilizing Tailwind utility classes (`bg-primary-900`, `text-accent`, etc.). Arbitrary CSS overrides are strictly banned unless approved by the design lead.
 
 ## Getting Help
 
-### Where do I start?
-
-1. Read [START-HERE.md](/START-HERE.md)
-2. Review [QUICK-START.md](/QUICK-START.md)
-3. Begin with [Section 1: Executive Summary](/planning/1-Executive-Summary.md)
-
-### Need more examples?
-
-See [Use Cases](/docs/use-cases) and [Skills Examples](/docs/skills-examples).
-
-### Have questions?
-
-- Check the [Master Index](/planning/0-Master-Index.md)
-- Review [Quick Reference](/docs/quick-reference)
-- Explore [Reference Guides](/docs/reference/)
-
+If you're stuck resolving an issue on the platform, check the [Operations Runbooks](../operations/runbooks/frontend-vercel.md) or message the `#dev-team` channel in our Discord!

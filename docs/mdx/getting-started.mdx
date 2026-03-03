@@ -1,39 +1,42 @@
 # Getting Started
 
-Welcome to the Project Planning Starter Pack. This guide will help you get started in 3 minutes.
+Welcome to the **UPHSL Game Developers' Club (GDC)** platform source repository! This guide will help developers and club officers spin up the architecture locally in under 3 minutes.
 
 ## Quick Setup
 
-### Step 1: Review the Structure
+### Step 1: Clone and Install
 
-This repository contains:
+This project leverages a unified **Next.js** monorepo linked directly to a **Supabase** backend. 
 
-- **12 Planning Sections** - Complete strategic and operational planning templates
-- **Technical Execution Guide** - Comprehensive implementation guide
-- **7 Claude Skills** - Auto-activated AI assistance
-- **Reference Guides** - Quick access to technical information
+```bash
+git clone https://github.com/uphsl-gdc/website.git
+cd website
+npm install
+```
 
-### Step 2: Start with Planning
+### Step 2: Environment Variables
 
-Begin with the planning sections:
+Request your local `.env.local` file from the Lead Technical Officer in the Discord Server, or configure your local edge variables:
 
-1. Read [Executive Summary](/planning/1-Executive-Summary.md)
-2. Define [Objectives & Metrics](/planning/2-Objectives-Success-Metrics.md)
-3. Set [Scope Definition](/planning/3-Scope-Definition.md)
-4. Design [System Architecture](/planning/4-System-Architecture-Design.md)
+```bash
+NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key
+SUPABASE_SERVICE_ROLE_KEY=your_service_role
+```
 
-### Step 3: Use Claude Skills
+### Step 3: Run the Development Server
 
-Ask Claude about your project:
+Start the local Next.js App Router environment:
 
-- "What tech stack should we use?"
-- "Create an ADR for our database choice"
-- "Review this code for quality"
-- "Set up CI/CD pipeline"
+```bash
+npm run dev
+```
 
-## Next Steps
+The GDC Public Website will be accessible at `http://localhost:3000`.
+To view the Member Dashboard, visit `http://localhost:3000/dashboard`, which requires a test-user login.
 
-- Explore the [Planning Framework](/docs/planning-framework)
-- Review [Technical Guide](/docs/technical-guide)
-- Check [Claude Skills](/docs/claude-skills) examples
+## Where to Look First
 
+- **Architecture:** Review [System Overview](../architecture/system-overview.md) and [ADR-001: Tech Stack Selection](../adr/adr-001-initial-tech-stack.md) to understand the Supabase integration rationale.
+- **APIs:** Review the core [Authentication Rules](../api/authentication.md).
+- **Styling:** We rely natively on Tailwind CSS. Do not use random hex codes; utilize variables established in `design-system.json`.

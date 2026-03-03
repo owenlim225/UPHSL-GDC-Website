@@ -68,10 +68,11 @@ Quick reference guide for technical decisions, architecture, and implementation 
 
 ## Testing Strategy
 
-- **Unit Tests:** Jest/pytest, target 80%+ coverage
-- **Integration Tests:** Test API endpoints
-- **E2E Tests:** Critical user flows
-- **Run:** `npm test` or `pytest`
+- **Unit Tests:** Vitest targeted at 80%+ coverage for helper functions in `src/lib/`.
+- **Integration Tests:** Testing Supabase RLS policies using a dedicated `test` project or local Docker Supabase instance.
+- **E2E Tests:** Critical user flows (Login, Game Submission) tested with Playwright.
+- **Mocking:** Use standard mocks for Supabase client calls to ensure frontend tests are deterministic and don't require live database access.
+- **Run:** `npm test`
 
 ## Deployment
 

@@ -1,89 +1,22 @@
-# Planning Framework
+# GDC Platform Planning Framework
 
-Complete 12-section planning framework for technical projects.
+As opposed to rigid corporate planning templates, the UPHSL Game Developers' Club platform relies heavily on Agile iteration. 
 
-## Overview
+## 1. Feature Propositions
+Any Club Member can propose platform improvements directly on the GitHub Repository's Issue Tracker or the Discord `-web-dev` channel.
 
-The planning framework consists of 12 interconnected sections that cover all aspects of project planning and execution.
+## 2. Architectural Approval
+If the feature strictly impacts database schemas or external networking (e.g. "We want itch.io integration!"), an active Technical Officer must review and write an **Architecture Decision Record (ADR)** inside `/docs/adr/`. 
 
-## The 12 Sections
+## 3. Scope Definition
+- Scope must be cleanly split between **Public Site** (viewed by all students) and **Dashboard Platform** (strictly authenticated context logic). The public site must prioritize loading speed above component reusability.
 
-### 1. Executive Summary
-Vision, problem statement, expected outcomes, stakeholder view.
+## 4. UI / UX Design Process
+Before committing React code, interfaces should be broadly modeled in our Figma workspace, strictly adhering to the exported token boundaries in `design-system.json`. Tailwind classes (`p-4 bg-background`) should mirror the Figma properties directly.
 
-**Location:** [planning/1-Executive-Summary](/planning/1-Executive-Summary)
-
-### 2. Objectives & Success Metrics
-Quantified success criteria, 30-60-90 day KPI tracking.
-
-**Location:** [planning/2-Objectives-Success-Metrics](/planning/2-Objectives-Success-Metrics)
-
-### 3. Scope Definition
-What's in/out, constraints, assumptions, change control.
-
-**Location:** [planning/3-Scope-Definition](/planning/3-Scope-Definition)
-
-### 4. System Architecture & Design
-Technical blueprint, component specifications, ADRs.
-
-**Location:** [planning/4-System-Architecture-Design](/planning/4-System-Architecture-Design)
-
-### 5. Technical Execution Workflow
-Complete technical implementation guide.
-
-**Location:** [planning/5-Technical-Execution-Workflow](/planning/5-Technical-Execution-Workflow)
-
-### 6. Project Phases & Timeline
-Milestone timeline, critical path, dependencies.
-
-**Location:** [planning/6-Project-Phases-Timeline](/planning/6-Project-Phases-Timeline)
-
-### 7. Resource Planning
-Team structure, skills, budget allocation.
-
-**Location:** [planning/7-Resource-Planning](/planning/7-Resource-Planning)
-
-### 8. Risk Management
-Risk identification, mitigation, contingency planning.
-
-**Location:** [planning/8-Risk-Management](/planning/8-Risk-Management)
-
-### 9. Execution Strategy
-Daily execution, ceremonies, quality assurance.
-
-**Location:** [planning/9-Execution-Strategy](/planning/9-Execution-Strategy)
-
-### 10. Monitoring & Reporting
-Metrics tracking and status reporting.
-
-**Location:** [planning/10-Monitoring-Reporting](/planning/10-Monitoring-Reporting)
-
-### 11. ROI & Value Realization
-Financial projections and value tracking.
-
-**Location:** [planning/11-ROI-Value-Realization](/planning/11-ROI-Value-Realization)
-
-### 12. Governance & Decision-Making
-Decision authority and escalation procedures.
-
-**Location:** [planning/12-Governance-Decision-Making](/planning/12-Governance-Decision-Making)
-
-### 13. Lessons Learned
-Continuous improvement and knowledge capture.
-
-**Location:** [planning/13-Lessons-Learned-Continuous-Improvement](/planning/13-Lessons-Learned-Continuous-Improvement)
-
-## Master Index
-
-For complete navigation, see the [Master Index](/planning/0-Master-Index).
-
-## How Sections Connect
-
-Each section references others:
-
-- Section 1 (Executive Summary) feeds into Sections 2, 10, 11
-- Section 2 (Objectives) connects to Sections 1, 9, 10, 11
-- Section 4 (Architecture) connects to Sections 3, 5, 7, 8, 12
-
-See the Master Index for complete connection mapping.
-
+## 5. Development Cycle
+1. Define the SQL schema and Row Level Security logic first inside Supabase.
+2. Regenerate TypeScript typings bindings.
+3. Execute Next.js routing maps in `src/app`.
+4. Build localized React components in `src/components`.
+5. Connect Server Actions for client forms to database updates.

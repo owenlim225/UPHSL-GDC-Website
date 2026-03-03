@@ -44,3 +44,6 @@ agent-tools/
 
 # Optional: uncomment to ignore lockfile (not recommended for apps)
 # package-lock.json
+
+# Python Environments
+.venv/

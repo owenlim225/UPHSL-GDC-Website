@@ -1,109 +1,50 @@
-# Use Cases
+# Dashboard Use Cases
 
-Real-world examples and scenarios for using the Project Planning Starter Pack.
+Real-world scenarios demonstrating how various user roles interact across the UPHSL GDC Platform, highlighting data-flows and approval mechanics.
 
-## Use Case 1: Web Application Startup
+## Use Case 1: Member Game Jam Submission
 
-**Team Size:** 5 engineers  
-**Timeline:** 12 weeks  
-**Goal:** MVP launch
+**Actor:** GDC Official Member (Student)  
+**Scenario:** Submitting a newly finished Unity project post-Game Jam.  
 
-### Approach
+### Flow & Actions
+1. The student navigates to `/login` and authenticates using their school email via Supabase Auth.
+2. They are securely routed to the `/dashboard`.
+3. They fill out a "New Project" form involving `Next.js Server Actions`, providing a Title, Engine (Unity), Genre, and Cover Image.
+4. The user clicks **Submit**. 
+5. The form data is safely pushed to Supabase under their UUID, setting `status: 'Pending'`. The Cover Image is securely pushed to the `public-assets` object bucket via a presigned-URL operation.
 
-1. **Week 1:** Complete Sections 1-4 (Executive Summary, Objectives, Scope, Architecture)
-2. **Week 2:** Complete Sections 5-8 (Timeline, Resources, Risks, Execution)
-3. **Weeks 3-12:** Execute using Sections 9-13 (Monitoring, ROI, Governance, Lessons)
+### Outcome
+- The user sees the game sitting in their personal Dashboard timeline under "Awaiting Verification".
+- The game is explicitly hidden from the public-facing `<GamesGallery />` component.
 
-### Key Decisions
+## Use Case 2: Officer Verification Pipeline
 
-- Tech Stack: TypeScript + Next.js + PostgreSQL
-- Architecture: Monolithic (start simple)
-- Deployment: Vercel (serverless)
+**Actor:** Technical Officer / Event Coordinator  
+**Scenario:** Handling a backlog of new game submissions.
 
-### Outcomes
+### Flow & Actions
+1. Over in Discord, the webhook channel fires: `🔔 New Game Submitted: Neon Dash by Student 02-12345`.
+2. The Officer clicks the link embedded in the ping and logs into the platform.
+3. Their JWT token contains the explicit `{ "role": "officer" }` claim, bypassing the restrictive RLS query policies, thus allowing them to view ALL pending games across all students.
+4. They navigate to `/dashboard/admin/queue`.
+5. They review "Neon Dash", play-testing it locally or verifying its integrity. They click **Approve** on the platform.
+6. A `PATCH` request hits the Next.js API route updating that Row's column to `status: 'Published'`.
 
-- MVP launched on schedule
-- 80%+ test coverage achieved
-- Zero critical security issues
+### Outcome
+- The game instantly goes live across the SSR public-facing website.
+- The original student receives a dashboard notification marking success.
 
-## Use Case 2: Enterprise Software Project
+## Use Case 3: Public Portfolio Browsing
 
-**Team Size:** 12 engineers  
-**Timeline:** 6 months  
-**Goal:** Production release
+**Actor:** Prospective Student or Studio Recruiter (Unauthenticated)  
+**Scenario:** Viewing the high-quality games made by the club.
 
-### Approach
+### Flow & Actions
+1. Recruiter navigates to `https://uphsl-gdc.com/projects`.
+2. The page is statically generated utilizing Incremental Static Regeneration (ISR). The Next.js server frequently queries Supabase for `status: 'Published'` items and bakes the responses into the server cache.
+3. The recruiter seamlessly filters games by "Genre" and "Engine" instantaneously across Edge caching.
 
-1. **Month 1:** Complete all planning sections
-2. **Months 2-5:** Development with regular reviews
-3. **Month 6:** Testing, refinement, launch
-
-### Key Decisions
-
-- Tech Stack: Java + Spring Boot + Oracle
-- Architecture: Microservices
-- Deployment: AWS (self-managed)
-
-### Outcomes
-
-- Production release on time
-- Compliance requirements met
-- Team fully onboarded
-
-## Use Case 3: Solo Developer Project
-
-**Team Size:** 1 developer  
-**Timeline:** 3 months  
-**Goal:** Launch SaaS product
-
-### Approach
-
-1. **Week 1:** Complete Sections 1-4 (focus on essentials)
-2. **Weeks 2-12:** Build and iterate
-3. **Ongoing:** Use Claude Skills for decisions
-
-### Key Decisions
-
-- Tech Stack: TypeScript + Next.js + PostgreSQL
-- Architecture: Monolithic
-- Deployment: Vercel + Railway
-
-### Outcomes
-
-- Product launched successfully
-- Automated workflows in place
-- Documentation complete
-
-## Use Case 4: Open Source Project
-
-**Team Size:** 3 maintainers, 20+ contributors  
-**Timeline:** Ongoing  
-**Goal:** Community growth
-
-### Approach
-
-1. **Initial:** Complete planning sections for roadmap
-2. **Ongoing:** Use governance section for decisions
-3. **Regular:** Update lessons learned
-
-### Key Decisions
-
-- Tech Stack: TypeScript + Node.js
-- Architecture: Modular packages
-- Deployment: npm + GitHub Pages
-
-### Outcomes
-
-- Clear contribution guidelines
-- Consistent code quality
-- Growing community
-
-## Choosing Your Approach
-
-Select the use case that matches your situation:
-
-- **Startup:** Use Case 1 (fast MVP)
-- **Enterprise:** Use Case 2 (comprehensive planning)
-- **Solo:** Use Case 3 (minimal overhead)
-- **Open Source:** Use Case 4 (community focus)
-
+### Outcome
+- Sub-50ms page loads because unauthenticated users only interact with heavily cached Vercel Edge networks.
+- Supabase traffic limits are preserved by restricting database hits entirely behind server ISR layers.

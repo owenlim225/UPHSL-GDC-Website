@@ -1,0 +1,43 @@
+# MDX Documentation Hub
+
+Welcome to the internal Engineering MDX Documentation Hub for the **UPHSL Game Developers' Club**.
+
+## Structure
+
+All `.mdx` files stored here are inherently routed through Next.js under the `/docs/*` endpoint path natively for simple member access.
+
+## Available Documentation
+
+Our updated, context-specific files for maintaining the GDC Platform:
+
+- **getting-started.mdx** - Engineer setup guide (Supabase + Next).
+- **technical-guide.mdx** - Technical rules (React RSC, Tailwind, RLS).
+- **quick-reference.mdx** - Daily cheat sheets and CLI commands.
+- **planning-framework.mdx** - Our Agile Feature Tracking framework.
+- **new-user-guide.mdx** - Getting access to the Vercel/Supabase environments.
+- **claude-skills.mdx** - AI-powered limits and workflows.
+- **use-cases.mdx** - Real member and officer dashboards event paths.
+- **faq.mdx** - Frequently asked questions on Next/Architecture.
+
+## Access
+
+These files immediately deploy via Vercel to:
+
+- `https://uphsl-gdc.com/docs`
+- `https://uphsl-gdc.com/docs/getting-started`
+- `https://uphsl-gdc.com/docs/technical-guide`
+- `https://uphsl-gdc.com/docs/use-cases`
+- `https://uphsl-gdc.com/docs/faq`
+
+## Adding New Documentation
+
+To add an entirely new page (e.g., specific instructions for migrating Officer accounts):
+
+1. Create `new_page_name.mdx` in the `docs/mdx/` directory locally.
+2. It is strictly available locally at `localhost:3000/docs/new_page_name`.
+3. Add a link element mapping correctly in `src/app/docs/page.tsx` so users can locate it.
+
+## File Naming
+
+- Use lowercase with hyphens strictly: `officer-migration.mdx`
+- Ensure extensions are `.mdx` for JSX embed compatibility.

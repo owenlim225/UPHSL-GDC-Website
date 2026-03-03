@@ -1,68 +1,25 @@
-# Technical Guide
+# Technical Implementation Guide
 
-Complete technical execution and implementation guide.
+This guide details the core technical implementation standards for the UPHSL Game Developers' Club platform.
 
-## Overview
+## 1. Frontend Standards (Next.js & React)
 
-The technical guide covers all aspects of implementation, from tech stack selection to deployment.
+- **App Router:** We exclusively use the Next.js App Router (`src/app`). Do not use the legacy `pages` directory.
+- **Server Components:** By default, all components should be Server Components (`React Server Components`). Only use `'use client'` at the lowest possible branches of the UI tree when states, hooks, or event listeners are fundamentally required.
+- **Data Fetching:** Do not use `fetch()` wrappers globally on the client side unless you have to. We prefer Server Actions to securely hit Supabase logic directly from the Next.js node layer.
 
-## Key Sections
+## 2. Authentication Flow (Supabase)
 
-### Tech Stack Selection
+- **Middleware:** Auth is protected via Next.js Edge Middleware. Routes under `/dashboard` automatically enforce active Supabase Session checks.
+- **Session Tokens:** JWTs are bound automatically in browser local-storage/cookies via `@supabase/ssr`.
 
-Framework for choosing technologies:
+## 3. Database & SQL Policy
 
-- Language and runtime selection
-- Database selection
-- Hosting and infrastructure
-- Authentication and security
-- Monitoring and observability
+All interactions to the Database MUST respect Row Level Security (RLS). 
+- **Read Logic:** If a student loads their personal `games` array, Supabase RLS policies check incoming authenticated UUIDs to restrict row visibility.
+- **Admin Overrides:** Features residing under `/dashboard/admin/*` utilize the `SUPABASE_SERVICE_ROLE_KEY` internally to bypass RLS entirely when Officers need global views. **Never** expose this key to the client.
 
-**Reference:** [planning/5-Technical-Execution-Workflow.md](/planning/5-Technical-Execution-Workflow.md)
+## 4. UI Library
 
-### Architecture Patterns
-
-Choose the right pattern:
-
-- Monolithic (MVP, simple domains)
-- Microservices (complex, high scale)
-- Serverless (event-driven, variable load)
-- Layered/N-Tier (enterprise, regulatory)
-
-### Development Workflow
-
-Complete development standards:
-
-- Code organization
-- Coding standards
-- Code review process
-- Version control (Git)
-- Testing strategy
-
-### CI/CD Pipelines
-
-Automated deployment:
-
-- GitHub Actions workflows
-- Testing and security scans
-- Deployment automation
-- Monitoring and alerts
-
-### Performance & Scalability
-
-Optimization strategies:
-
-- Frontend performance
-- Backend performance
-- Database optimization
-- Horizontal scaling
-- Reliability patterns
-
-## Quick Reference
-
-For detailed technical information, see:
-
-- [Technical Execution Workflow](/planning/5-Technical-Execution-Workflow.md)
-- [System Architecture Design](/planning/4-System-Architecture-Design.md)
-- [Reference Guides](/docs/reference/)
-
+We use standard Tailwind CSS.
+Do not introduce alternative CSS modules or frameworks like ChakraUI or MaterialUI. If complex widgets are required, extend from `shadcn/ui` copying the raw React components directly into `components/ui/`.

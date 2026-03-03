@@ -59,23 +59,27 @@ See [reference/README.md](reference/README.md) for the full list.
 
 ### architecture/
 
-Detailed architecture: system overview, component specs, data flow, deployment.  
-See [architecture/README.md](architecture/README.md).
+Detailed architecture: system design, component specs, and data flow.  
+- [**Architecture Hub (GDC)**](architecture/uphsl-architecture-readme.md) — Specialized project overview.
+- [Boilerplate README](architecture/README.md) — Structural template.
 
 ### api/
 
-API documentation: endpoints, schemas, authentication, examples.  
-See [api/README.md](api/README.md).
+API documentation: endpoints, schemas, authentication, and examples.  
+- [**API Hub (GDC)**](api/uphsl-api-readme.md) — Specialized project endpoints.
+- [Boilerplate README](api/README.md) — Structural template.
 
 ### operations/
 
-Runbooks, deployment, monitoring, incident response, troubleshooting.  
-See [operations/README.md](operations/README.md).
+Runbooks, deployment, monitoring, and incident response.  
+- [**Operations Hub (GDC)**](operations/uphsl-operations-readme.md) — Specialized project runbooks.
+- [Boilerplate README](operations/README.md) — Structural template.
 
 ### adr/
 
-Architecture Decision Records — why we chose certain tech or designs.  
-See [adr/README.md](adr/README.md).
+Architecture Decision Records — documenting technical choices.  
+- [**ADR Log (GDC)**](adr/uphsl-adr-readme.md) — Specialized project decisions.
+- [Boilerplate README](adr/README.md) — Structural template.
 
 ### mdx/
 

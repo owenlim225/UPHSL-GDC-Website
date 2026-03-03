@@ -1,0 +1,79 @@
+/* UPHSL GDC – design tokens from design-system.json */
+:root {
+  /* Colors */
+  --color-bg-primary: #ffffff;
+  --color-bg-secondary: #d9d9d9;
+  --color-bg-tertiary: #888888;
+  --color-text: #000000;
+  --color-text-inverse: #ffffff;
+  --color-border: #000000;
+  --shadow-card: 0 4px 4px rgba(0, 0, 0, 0.25);
+  --shadow-inset: inset 0 4px 4px rgba(0, 0, 0, 0.25);
+
+  /* Typography */
+  --font-sans: 'Inter', sans-serif;
+  --text-xs: 12px;
+  --text-sm: 13px;
+  --text-sm2: 13.461px;
+  --text-base: 14px;
+  --text-md: 16px;
+  --text-md2: 17.323px;
+  --text-lg: 20px;
+  --text-xl: 24px;
+  --text-2xl: 40px;
+  --text-3xl: 64px;
+  --text-4xl: 96px;
+  --text-5xl: 128px;
+
+  /* Spacing */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 21px;
+  --space-8: 24px;
+  --space-10: 26px;
+  --space-12: 35px;
+  --space-16: 48px;
+  --space-20: 64px;
+  --space-24: 83px;
+  --space-32: 96px;
+
+  /* Border radius */
+  --radius-sm: 10.769px;
+  --radius-md: 16px;
+  --radius-lg: 17px;
+
+  /* Layout */
+  --content-max: 1412px;
+  --footer-width: 1440px;
+  --header-height: 160px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: var(--font-sans);
+  color: var(--color-text);
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--color-bg-primary);
+}
+
+#root {
+  min-height: 100vh;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}

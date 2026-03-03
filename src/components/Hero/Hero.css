@@ -1,0 +1,247 @@
+.gdc-hero {
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: 0;
+}
+
+.gdc-hero__grid {
+  display: grid;
+  grid-template-columns: 335px 710px 335px;
+  grid-template-rows: 236px 252px;
+  gap: 0;
+  min-height: 488px;
+}
+
+.gdc-hero__left {
+  grid-column: 1;
+  grid-row: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.gdc-hero__left-top {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  height: 236px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 0 16px;
+  overflow: hidden;
+}
+
+.gdc-hero__logo-uphsl {
+  position: absolute;
+  left: 50%;
+  top: -31px;
+  transform: translateX(-50%);
+  width: 156px;
+  height: 156px;
+  object-fit: contain;
+}
+
+.gdc-hero__tagline {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: var(--text-md);
+  text-align: center;
+  margin: 0;
+  padding: 0 24px;
+  max-width: 266px;
+}
+
+.gdc-hero__left-bot {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  height: 236px;
+  position: relative;
+  overflow: hidden;
+}
+
+.gdc-hero__card-inner {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 118px;
+  background: var(--color-bg-tertiary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.gdc-hero__pixie-bot {
+  position: absolute;
+  right: -92px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 183px;
+  height: 181px;
+  object-fit: contain;
+  object-position: left center;
+}
+
+.gdc-hero__mid {
+  grid-column: 2;
+  grid-row: 1 / -1;
+  background: var(--color-bg-primary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 57px;
+}
+
+.gdc-hero__logo-gdc {
+  width: 100%;
+  max-width: 354px;
+  height: auto;
+  object-fit: contain;
+}
+
+.gdc-hero__right {
+  grid-column: 3;
+  grid-row: 1 / -1;
+  position: relative;
+  padding-top: 0;
+}
+
+.gdc-hero__card {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  position: absolute;
+  left: 0;
+  width: 335px;
+  padding: 15px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  background: var(--color-bg-primary);
+}
+
+.gdc-hero__card--top {
+  top: 0;
+  height: 151px;
+  gap: var(--space-8);
+}
+
+.gdc-hero__card-logo {
+  width: 21px;
+  height: 22px;
+  object-fit: contain;
+}
+
+.gdc-hero__card--mid {
+  top: 168px;
+  height: 151px;
+  padding-left: 26px;
+}
+
+.gdc-hero__card--bot {
+  top: 337px;
+  height: 151px;
+  padding-left: 26px;
+  align-items: flex-end;
+  text-align: right;
+}
+
+.gdc-hero__time {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: var(--text-lg);
+  margin: 0;
+}
+
+.gdc-hero__date {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: var(--text-base);
+  margin: 0;
+}
+
+.gdc-hero__card-title {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: var(--text-lg);
+  margin: 0;
+}
+
+.gdc-hero__card-value {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: var(--text-md);
+  margin: 0;
+}
+
+.gdc-hero__card-meta,
+.gdc-hero__card-pts {
+  font-family: var(--font-sans);
+  font-style: italic;
+  font-weight: 400;
+  font-size: var(--text-xs);
+  margin: 0;
+}
+
+.gdc-hero__card-pts {
+  font-size: var(--text-sm);
+}
+
+.gdc-hero__img-overlay {
+  position: absolute;
+  left: -14px;
+  top: 286px;
+  width: 146px;
+  height: 202px;
+  object-fit: contain;
+  object-position: left top;
+  pointer-events: none;
+}
+
+.gdc-hero__yuki-grad {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 105px;
+  height: 198px;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+.gdc-hero__partners {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 83px;
+  margin-top: 16px;
+  padding: 24px 0;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.gdc-hero__partner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6.4px;
+  width: 89.6px;
+}
+
+.gdc-hero__partner-box {
+  width: 89.6px;
+  height: 89.6px;
+  background: var(--color-bg-tertiary);
+  border-radius: var(--radius-md);
+}
+
+.gdc-hero__partner-name {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: var(--text-md);
+  text-align: center;
+  margin: 0;
+}

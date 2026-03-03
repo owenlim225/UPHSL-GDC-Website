@@ -6,6 +6,9 @@ dist/
 dist-ssr/
 *.tsbuildinfo
 
+# Test coverage
+coverage/
+
 # Local env files (keep secrets out of repo)
 .env
 .env.local
@@ -30,6 +33,12 @@ pnpm-debug.log*
 *.sln
 *.sw?
 
+# Agent / IDE (local skills and config, not project source)
+.agent/
+.agents/
+.windsurf/
+skills-lock.json
+
 # OS
 .DS_Store
 Thumbs.db
@@ -41,6 +50,10 @@ Desktop.ini
 
 # Cursor / agent output (tool results, etc.)
 agent-tools/
+
+# Supabase (when used)
+supabase/.temp/
+supabase/.branches/
 
 # Optional: uncomment to ignore lockfile (not recommended for apps)
 # package-lock.json
